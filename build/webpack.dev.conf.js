@@ -9,32 +9,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-var appData = require('../data.json')
-var seller = appData.seller
-var goods = appData.goods
-var ratings = appData.ratings
-var express = require('express');
-var apiRoutes = express.Router();
-apiRoutes.get('./seller',function (req,res) {
-    res.json({
-        error:0,
-        data:seller
-    });
-});
-apiRoutes.get('./goods',function (req,res) {
-    res.json({
-        error:0,
-        data:goods
-    });
-});
-apiRoutes.get('./ratings',function (req,res) {
-    res.json({
-        error:0,
-        data:ratings
-    });
-});
-var app =  express();
-app.use('/api',apiRoutes);
+const appData = require('../data.json')
+const seller = appData.seller
+const goods = appData.goods
+const ratings = appData.ratings
+const express = require('express')
+const app = express()
+
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -48,6 +29,29 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+      before(app) {
+          app.get('/api/seller', (req, res) => {
+              res.json({
+                  // 这里是你的json内容
+                  errno: 0,
+                  data: seller
+              })
+          }),
+              app.get('/api/goods', (req, res) => {
+                  res.json({
+                      // 这里是你的json内容
+                      errno: 0,
+                      data: goods
+                  })
+              }),
+              app.get('/api/ratings', (req, res) => {
+                  res.json({
+                      // 这里是你的json内容
+                      errno: 0,
+                      data: ratings
+                  })
+              })
+      },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
@@ -69,6 +73,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     watchOptions: {
       poll: config.dev.poll,
     }
+
   },
   plugins: [
     new webpack.DefinePlugin({
