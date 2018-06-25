@@ -8,13 +8,15 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const portfinder = require('portfinder')
-const appData = require('../data.json')
-const seller = appData.seller
-const goods = appData.goods
-const ratings = appData.ratings
-const express = require('express')
-const app = express()
+const portfinder = require('portfinder');
+const appData = require('../data.json');
+const seller = appData.seller;
+const goods = appData.goods;
+const ratings = appData.ratings;
+const express = require('express');
+var app = express()
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)
 
 
 const HOST = process.env.HOST
@@ -32,21 +34,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       before(app) {
           app.get('/api/seller', (req, res) => {
               res.json({
-                  // 这里是你的json内容
                   errno: 0,
                   data: seller
-              })
+              })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
           }),
               app.get('/api/goods', (req, res) => {
                   res.json({
-                      // 这里是你的json内容
                       errno: 0,
                       data: goods
                   })
               }),
               app.get('/api/ratings', (req, res) => {
                   res.json({
-                      // 这里是你的json内容
                       errno: 0,
                       data: ratings
                   })
