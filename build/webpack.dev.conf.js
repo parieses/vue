@@ -14,9 +14,9 @@ const seller = appData.seller;
 const goods = appData.goods;
 const ratings = appData.ratings;
 const express = require('express');
-var app = express()
-var apiRoutes = express.Router()
-app.use('/api', apiRoutes)
+var app = express();
+var apiRoutes = express.Router();
+app.use('/api', apiRoutes);
 
 
 const HOST = process.env.HOST
