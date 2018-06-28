@@ -3,20 +3,16 @@
     <v-header></v-header>
     <div class="tab">
       <div class="tab-item">
-        <a v-link="{path:'/goods'}">
-          商品
-        </a>
+          <router-link v-bind:to="'goods'">商品</router-link>
       </div>
       <div class="tab-item">
-        <a v-link="{path:'/ratings'}">
-          评论
-        </a></div>
+          <router-link v-bind:to="'ratings'">评论</router-link>
+      </div>
       <div class="tab-item">
-        <a v-link="{path:'/seller'}">
-          商家
-        </a></div>
+          <router-link v-bind:to="'seller'">商家</router-link>
+      </div>
     </div>
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -36,7 +32,7 @@
       width:100%
       height:40px
       line-height: 40px
-      background:red
+      /*background:red*/
       .tab-item
         flex:1
         text-align:center
