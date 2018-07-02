@@ -10,5 +10,5 @@
     };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" type="stylesheet/stylus">
 </style>

@@ -27,6 +27,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'semi':['error','always'], //配置强制分号结尾
       'indent':0,//取消缩进
+      'space-before-function-paren': 0,//函数后面不带空格
 
   }
 };
